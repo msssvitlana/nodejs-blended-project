@@ -1,5 +1,5 @@
 import createHttpError from 'http-errors';
-import { createProduct, getAllProducts, getProductbyId } from '../services/products.js';
+import { createProduct, getAllProducts, getProductbyId, patchProduct } from '../services/products.js';
 
 export const getAllProductsController = async (req, res) => {
   const products = await getAllProducts();
@@ -34,4 +34,19 @@ export const createProductController = async (req, res) => {
     message: 'Successfully created a product!',
     data: product,
   });
- };
+};
+
+export const patchProductController = async (req, res, next) => {
+  const { productId } = req.params;
+  const product = await patchProduct(productId, req.body);
+
+  if (!product) {
+    throw createHttpError(404, 'Product not found');
+  }
+
+  res.json({
+    status: 200,
+    message: "Successfully patched a product!",
+    data: product,
+  });
+};
