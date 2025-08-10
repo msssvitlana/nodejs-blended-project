@@ -16,3 +16,11 @@ export const createProduct = async (newProduct) => {
   const product = await ProductModel.create(newProduct);
   return product;
 };
+
+export const patchProduct = async (productId, payload,) => {
+  const product = await ProductModel.findOneAndUpdate({ _id: productId }, payload, {
+    new: true,
+  });
+
+  return product;
+};
