@@ -17,10 +17,20 @@ export const createProduct = async (newProduct) => {
   return product;
 };
 
-export const patchProduct = async (productId, payload,) => {
-  const product = await ProductModel.findOneAndUpdate({ _id: productId }, payload, {
-    new: true,
-  });
+export const patchProduct = async (productId, payload) => {
+  const product = await ProductModel.findOneAndUpdate(
+    { _id: productId },
+    payload,
+    {
+      new: true,
+    },
+  );
+
+  return product;
+};
+
+export const deleteProductById = async (productId) => {
+  const product = await ProductModel.findByIdAndDelete(productId);
 
   return product;
 };
