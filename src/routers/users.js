@@ -1,7 +1,13 @@
 import { Router } from 'express';
-import { registerUserController } from '../controllers/users.js';
+import {
+  loginUserController,
+  registerUserController,
+} from '../controllers/users.js';
 import { validateBody } from '../middlewares/validateBody.js';
-import { createUserValidationSchema } from '../validation/users.js';
+import {
+  createUserValidationSchema,
+  loginUserSchema,
+} from '../validation/users.js';
 
 const usersRouter = Router();
 
@@ -11,4 +17,5 @@ usersRouter.post(
   registerUserController,
 );
 
+usersRouter.post('/login', validateBody(loginUserSchema), loginUserController);
 export default usersRouter;
