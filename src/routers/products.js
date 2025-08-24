@@ -13,23 +13,23 @@ import { isValidId } from '../middlewares/isValidId.js';
 
 const productsRouter = Router();
 
-productsRouter.use('/products/:productId', isValidId);
+productsRouter.use('/:productId', isValidId);
 
-productsRouter.get('/products', getAllProductsController);
+productsRouter.get('/', getAllProductsController);
 
-productsRouter.get('/products/:productId', getProductbyIdController);
+productsRouter.get('/:productId', getProductbyIdController);
 
 productsRouter.post(
-  '/products',
+  '/',
   validateBody(createValidationSchema),
   createProductController,
 );
 productsRouter.patch(
-  '/products/:productId',
+  '/:productId',
   validateBody(patchValidationSchema),
   patchProductController,
 );
 
-productsRouter.delete('/products/:productId', deleteProductByIdController);
+productsRouter.delete('/:productId', deleteProductByIdController);
 
 export default productsRouter;
