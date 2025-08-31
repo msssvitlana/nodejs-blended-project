@@ -10,6 +10,7 @@ import { parseFilterParams } from '../utils/parseFiterParams.js';
 
 export const getAllProductsController = async (req, res) => {
   const filter = parseFilterParams(req.query);
+  filter.userId = req.user._id;
 
   const products = await getAllProducts(filter);
 
