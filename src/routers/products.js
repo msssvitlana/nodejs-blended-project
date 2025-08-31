@@ -7,13 +7,18 @@ import {
   patchProductController,
 } from '../controllers/products.js';
 import { validateBody } from '../middlewares/validateBody.js';
-import { createValidationSchema } from '../validation/createValidationSchema.js';
-import { patchValidationSchema } from '../validation/patchValidationSchema.js';
+
 import { isValidId } from '../middlewares/isValidId.js';
+import { checkPermissionsToInteractWithproduct } from '../middlewares/products.js';
+import { createValidationSchema, patchValidationSchema } from '../validation/products.js';
 
 const productsRouter = Router();
 
-productsRouter.use('/:productId', isValidId);
+productsRouter.use(
+  '/:productId',
+  isValidId,
+  checkPermissionsToInteractWithproduct,
+);
 
 productsRouter.get('/', getAllProductsController);
 
