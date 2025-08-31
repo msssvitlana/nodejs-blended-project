@@ -1,7 +1,9 @@
 import { Router } from 'express';
 import {
   loginUserController,
+
   logoutUserController,
+
   registerUserController,
 } from '../controllers/users.js';
 import { validateBody } from '../middlewares/validateBody.js';
@@ -20,5 +22,7 @@ usersRouter.post(
 
 usersRouter.post('/login', validateBody(loginUserSchema), loginUserController);
 
+
 usersRouter.post('/logout', logoutUserController);
+
 export default usersRouter;

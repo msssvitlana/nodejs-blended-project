@@ -1,5 +1,7 @@
 import { ONE_DAY } from '../constants/index.js';
+
 import { loginUser, logoutUser, registerUser } from '../services/users.js';
+
 
 export const registerUserController = async (req, res) => {
   const user = await registerUser(req.body);
@@ -35,6 +37,7 @@ export const loginUserController = async (req, res) => {
   });
 };
 
+
 export const logoutUserController = async (req, res) => {
   if (req.cookie.sessionId) await logoutUser(req.cookie.sessionId);
 
@@ -43,3 +46,4 @@ export const logoutUserController = async (req, res) => {
 
   res.status(204).send();
 };
+

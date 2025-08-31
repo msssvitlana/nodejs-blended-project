@@ -49,3 +49,4 @@ export const loginUser = async (payload) => {
 export const logoutUser = async (sessionId) => {
   await SessionModel.findByIdAndDelete(sessionId);
 };
+
