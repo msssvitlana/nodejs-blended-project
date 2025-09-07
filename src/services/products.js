@@ -1,7 +1,7 @@
 import { ProductModel } from '../db/models/product.js';
 
 export const getAllProducts = async (filter) => {
-  const productsQuery = ProductModel.find();
+  const productsQuery = ProductModel.find({ userId: filter.userId });
   if (filter.category) {
     productsQuery.where('category').equals(filter.category);
   }
@@ -25,20 +25,16 @@ export const createProduct = async (newProduct) => {
   return product;
 };
 
-export const patchProduct = async (productId, payload) => {
-  const product = await ProductModel.findOneAndUpdate(
-    { _id: productId },
-    payload,
-    {
-      new: true,
-    },
-  );
+export const patchProduct = async (productIdes, payload) => {
+  const product = await ProductModel.findOneAndUpdate(productIdes, payload, {
+    new: true,
+  });
 
   return product;
 };
 
 export const deleteProductById = async (productId) => {
-  const product = await ProductModel.findByIdAndDelete(productId);
+  const product = await ProductModel.findOneAndDelete(productId);
 
   return product;
 };

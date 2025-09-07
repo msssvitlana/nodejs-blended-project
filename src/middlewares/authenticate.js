@@ -5,8 +5,10 @@ import { SessionModel } from '../db/models/session.js';
 import { UserModel } from '../db/models/user.js';
 
 // Застосуйте цей middleware до всіх роутів продуктів, щоб користувачі могли взаємодіяти тільки з власною колекцією продуктів.
-export const authenticate = async (res, req, next) => {
+export const authenticate = async (req, res, next) => {
   const authHeader = req.get('Authorization');
+  console.log(authHeader);
+
   if (!authHeader) {
     next(createHttpError(401, 'Please provide authorization header'));
     return;

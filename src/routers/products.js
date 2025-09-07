@@ -10,10 +10,14 @@ import { validateBody } from '../middlewares/validateBody.js';
 
 import { isValidId } from '../middlewares/isValidId.js';
 import { checkPermissionsToInteractWithproduct } from '../middlewares/products.js';
-import { createValidationSchema, patchValidationSchema } from '../validation/products.js';
+import {
+  createValidationSchema,
+  patchValidationSchema,
+} from '../validation/products.js';
+import { authenticate } from '../middlewares/authenticate.js';
 
 const productsRouter = Router();
-
+productsRouter.use('/', authenticate);
 productsRouter.use(
   '/:productId',
   isValidId,
