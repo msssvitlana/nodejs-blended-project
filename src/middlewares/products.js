@@ -7,7 +7,7 @@ export const checkPermissionsToInteractWithproduct = async (req, res, next) => {
   if (!product?.userId?.equals(req.user._id))
     throw createHttpError(
       403,
-      'You do not have permission to access this contact',
+      'You do not have permission to access this product',
     );
 
   next();
